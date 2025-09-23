@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohsen Falahi - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 320px;
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            padding: 2rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid #333;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 3px solid #00ffaa;
+        }
+
+        .name {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .title {
+            color: #cccccc;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            text-decoration: none;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #00ffaa;
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            background-color: #00ffaa;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: #000;
+            font-size: 0.9rem;
+        }
+
+        .contact-label {
+            font-size: 0.85rem;
+            color: #999;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            color: #999;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #00ffaa;
+            transform: translateY(-3px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 320px;
+            flex: 1;
+            padding: 2rem 3rem;
+            background-color: #111111;
+        }
+
+        .nav-tabs {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(17, 17, 17, 0.95);
+            padding: 1rem 3rem;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #333;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-item {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            background-color: #333;
+        }
+
+        .nav-item.active {
+            background-color: #00ffaa;
+            color: #000;
+        }
+
+        .section {
+            margin-top: 80px;
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ffaa, #00cc88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            width: 60px;
+            height: 4px;
+            background: #00ffaa;
+            margin-bottom: 3rem;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            color: #cccccc;
+        }
+
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .interest-card {
+            background: linear-gradient(145deg, #1a1a1a, #252525);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .interest-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ffaa;
+            box-shadow: 0 10px 30px rgba(0, 255, 170, 0.1);
+        }
+
+        .interest-icon {
+            font-size: 2.5rem;
+            color: #00ffaa;
+            margin-bottom: 1rem;
+        }
+
+        .interest-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .interest-desc {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        /* Resume Section */
+        .resume-section {
+            margin-bottom: 3rem;
+        }
+
+        .resume-section-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #ffffff;
+        }
+
+        .resume-icon {
+            color: #00ffaa;
+            font-size: 1.5rem;
+        }
+
+        .timeline {
+            position: relative;
+            margin-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #00ffaa;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            background: linear-gradient(145deg, #1a1a1a, #252525);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #00ffaa;
+        }
+
+        .timeline-date {
+            color: #00ffaa;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .timeline-company {
+            color: #cccccc;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-desc {
+            color: #aaaaaa;
+            line-height: 1.6;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: linear-gradient(145deg, #1a1a1a, #252525);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid #333;
+        }
+
+        .skill-category-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #00ffaa;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: #333;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00ffaa, #00cc88);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+
+        /* Projects Section */
+        .project-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: #333;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #00ffaa;
+            color: #000;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(145deg, #1a1a1a, #252525);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: #00ffaa;
+            box-shadow: 0 15px 40px rgba(0, 255, 170, 0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: linear-gradient(45deg, #333, #555);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .project-category {
+            color: #00ffaa;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-desc {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-text {
+            font-size: 1.2rem;
+            color: #cccccc;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-method {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(145deg, #1a1a1a, #252525);
+            border-radius: 15px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-5px);
+            border-color: #00ffaa;
+            box-shadow: 0 10px 30px rgba(0, 255, 170, 0.1);
+        }
+
+        .contact-method i {
+            font-size: 3rem;
+            color: #00ffaa;
+            margin-bottom: 1rem;
+        }
+
+        .contact-method-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .contact-method-info {
+            color: #cccccc;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 2rem 1.5rem;
+            }
+
+            .nav-tabs {
+                padding: 1rem 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .nav-list {
+                gap: 0.5rem;
+            }
+
+            .nav-item {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .interests-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-methods {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <img src="https://via.placeholder.com/200x200/333333/ffffff?text=Photo" alt="Profile Picture" class="profile-img">
+            <h1 class="name">Mohsen Falahi</h1>
+            <p class="title">M.Sc. Mechanical Engineering</p>
+            
+            <div class="contact-info">
+                <a href="mailto:mohsen.falahi@example.com" class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <span class="contact-label">EMAIL</span>
+                        mohsen.falahi@example.com
+                    </div>
+                </a>
+                
+                <a href="tel:+1234567890" class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <div>
+                        <span class="contact-label">PHONE</span>
+                        +1 (234) 567-8900
+                    </div>
+                </a>
+                
+                <a href="https://linkedin.com/in/mohsenfalahi" class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                    <div>
+                        <span class="contact-label">LINKEDIN</span>
+                        mohsenfalahi
+                    </div>
+                </a>
+                
+                <a href="https://github.com/mohsenfalahi" class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-github"></i></div>
+                    <div>
+                        <span class="contact-label">GITHUB</span>
+                        mohsenfalahi
+                    </div>
+                </a>
+                
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <span class="contact-label">LOCATION</span>
+                        Tehran, Iran
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Navigation -->
+            <nav class="nav-tabs">
+                <ul class="nav-list">
+                    <li class="nav-item active" data-section="about">About</li>
+                    <li class="nav-item" data-section="resume">Resume</li>
+                    <li class="nav-item" data-section="projects">Projects</li>
+                    <li class="nav-item" data-section="contact">Contact</li>
+                </ul>
+            </nav>
+
+            <!-- About Section -->
+            <section id="about" class="section active">
+                <h1 class="section-title">About Me</h1>
+                <div class="section-subtitle"></div>
+                
+                <p class="about-text">
+                    As a Mechanical Engineer specializing in Multiphase Fluid Mechanics, I am deeply passionate about innovation and advanced engineering solutions. My research focuses on complex fluid dynamics, heat and mass transfer phenomena, and computational modeling of multiphase systems. I have a strong appreciation for analytical problem-solving and find joy in bringing theoretical concepts to practical applications.
+                </p>
+                
+                <h2 style="font-size: 2rem; margin-bottom: 2rem; color: #ffffff;">Research Interests</h2>
+                
+                <div class="interests-grid">
+                    <div class="interest-card">
+                        <div class="interest-icon"><i class="fas fa-water"></i></div>
+                        <h3 class="interest-title">Multiphase Fluid Mechanics</h3>
+                        <p class="interest-desc">Gas-liquid flows, bubble dynamics, interfacial phenomena, and phase transition modeling in industrial applications.</p>
+                    </div>
+                    
+                    <div class="interest-card">
+                        <div class="interest-icon"><i class="fas fa-fire"></i></div>
+                        <h3 class="interest-title">Heat And Mass Transfer</h3>
+                        <p class="interest-desc">Convective heat transfer, mass diffusion, thermal management systems, and energy efficiency optimization.</p>
+                    </div>
+                    
+                    <div class="interest-card">
+                        <div class="interest-icon"><i class="fas fa-calculator"></i></div>
+                        <h3 class="interest-title">Computational Fluid Dynamics</h3>
+                        <p class="interest-desc">CFD modeling, numerical simulation of complex flows, mesh generation, and turbulence modeling techniques.</p>
+                    </div>
+                    
+                    <div class="interest-card">
+                        <div class="interest-icon"><i class="fas fa-industry"></i></div>
+                        <h3 class="interest-title">Process Engineering</h3>
+                        <p class="interest-desc">Design and optimization of industrial processes, reactor engineering, and system integration for enhanced performance.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resume Section -->
+            <section id="resume" class="section">
+                <h1 class="section-title">Resume</h1>
+                <div class="section-subtitle"></div>
+                
+                <div class="resume-section">
+                    <h2 class="resume-section-title">
+                        <i class="fas fa-graduation-cap resume-icon"></i>
+                        Education
+                    </h2>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Sep 2023 - Present</div>
+                            <h3 class="timeline-title">M.Sc. in Mechanical Engineering</h3>
+                            <div class="timeline-company">University of Tehran</div>
+                            <p class="timeline-desc">Specialization in Multiphase Fluid Mechanics. Thesis: "Numerical Investigation of Gas-Liquid Flow Patterns in Microchannels". Supervisor: Dr. Ahmad Rezaei. GPA: 3.85/4.00</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">Sep 2019 - Jul 2023</div>
+                            <h3 class="timeline-title">B.Sc. in Mechanical Engineering</h3>
+                            <div class="timeline-company">Sharif University of Technology</div>
+                            <p class="timeline-desc">Graduated with High Honors. Final Project: "Design and Analysis of Heat Exchanger for Multiphase Flow Applications". GPA: 3.92/4.00 (Last two years: 3.98/4.00)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resume-section">
+                    <h2 class="resume-section-title">
+                        <i class="fas fa-flask resume-icon"></i>
+                        Research Experience
+                    </h2>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Jan 2024 - Present</div>
+                            <h3 class="timeline-title">Graduate Research Assistant</h3>
+                            <div class="timeline-company">Multiphase Flow Laboratory - University of Tehran</div>
+                            <p class="timeline-desc">Conducting research on bubble dynamics in confined geometries using high-speed imaging and computational modeling. Developing novel measurement techniques for interfacial area concentration.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">Jun 2022 - Aug 2023</div>
+                            <h3 class="timeline-title">Undergraduate Research Assistant</h3>
+                            <div class="timeline-company">Heat Transfer Laboratory - Sharif University</div>
+                            <p class="timeline-desc">Investigated enhanced heat transfer in mini-channels with surface modifications. Performed experimental studies and CFD simulations to optimize thermal performance.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resume-section">
+                    <h2 class="resume-section-title">
+                        <i class="fas fa-briefcase resume-icon"></i>
+                        Work Experience
+                    </h2>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Summer 2023</div>
+                            <h3 class="timeline-title">Engineering Intern</h3>
+                            <div class="timeline-company">Petro Pars Company</div>
+                            <p class="timeline-desc">Worked on process optimization in oil refinery units. Analyzed multiphase flow systems and proposed efficiency improvements resulting in 8% energy savings.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resume-section">
+                    <h2 class="resume-section-title">
+                        <i class="fas fa-cogs resume-icon"></i>
+                        Skills
+                    </h2>
+                    
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3 class="skill-category-title">
+                                <i class="fas fa-code"></i> Software & Tools
+                            </h3>
+                            <div class="skill-item">
+                                <div class="skill-name"><span>ANSYS Fluent</span><span>95%</span></div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 95%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name"><span>MATLAB</span><span>90%</span></div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name"><span>SolidWorks</span><span>85%</span></div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name"><span>Python</span><span>80%</span></div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3 class="skill-category-title">
+                                <i class="fas fa-language"></i> Languages
+                            </h3>
+                            <div class="skill-item">
+                                <div class="skill-name"><span>Persian (Native)</span><span>100%</span></div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 100%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name"><span>English</span><span>90%</span></div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name"><span>German (Basic)</span><span>40%</span></div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 40%"></div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3 class="skill-category-title">
+                                <i class="fas fa-brain"></i> Technical Skills
+                            </h3>
+                            <div class="skill-item">
+                                <div class="skill-name"><span>CFD Analysis</span><span>95%</span></div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 95%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name"><span>Heat Transfer</span><span>90%</span></div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name"><span>Fluid Mechanics</span><span>95%</span></div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 95%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name"><span>Data Analysis</span><span>85%</span></div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section">
+                <h1 class="section-title">Projects</h1>
+                <div class="section-subtitle"></div>
+                
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="fluid-mechanics">Fluid Mechanics</button>
+                    <button class="filter-btn" data-filter="heat-transfer">Heat Transfer</button>
+                    <button class="filter-btn" data-filter="cfd">CFD</button>
+                    <button class="filter-btn" data-filter="experimental">Experimental</button>
+                    <button class="filter-btn" data-filter="simulation">Simulation</button>
+                </div>
+                
+                <div class="projects-grid">
+                    <div class="project-card" data-category="fluid-mechanics cfd" onclick="openProject('https://github.com/mohsenfalahi/bubble-dynamics')">
+                        <div class="project-image"><i class="fas fa-circle-notch"></i></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Bubble Dynamics in Microchannels</h3>
+                            <div class="project-category">Fluid Mechanics</div>
+                            <p class="project-desc">CFD simulation of bubble formation and coalescence in T-junction microchannels using Volume of Fluid method.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-category="heat-transfer experimental" onclick="openProject('https://github.com/mohsenfalahi/heat-exchanger-design')">
+                        <div class="project-image"><i class="fas fa-fire"></i></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Enhanced Heat Exchanger Design</h3>
+                            <div class="project-category">Heat Transfer</div>
+                            <p class="project-desc">Experimental and numerical study of enhanced heat transfer surfaces for compact heat exchangers.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-category="cfd simulation" onclick="openProject('https://github.com/mohsenfalahi/multiphase-flow')">
+                        <div class="project-image"><i class="fas fa-water"></i></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Multiphase Flow Patterns</h3>
+                            <div class="project-category">CFD</div>
+                            <p class="project-desc">Classification and prediction of flow patterns in horizontal pipes using machine learning algorithms.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-category="fluid-mechanics simulation" onclick="openProject('https://github.com/mohsenfalahi/droplet-impact')">
+                        <div class="project-image"><i class="fas fa-tint"></i></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Droplet Impact Dynamics</h3>
+                            <div class="project-category">Fluid Mechanics</div>
+                            <p class="project-desc">High-speed visualization and numerical modeling of droplet impact on superhydrophobic surfaces.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-category="heat-transfer cfd" onclick="openProject('https://github.com/mohsenfalahi/porous-media')">
+                        <div class="project-image"><i class="fas fa-th"></i></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Flow in Porous Media</h3>
+                            <div class="project-category">Heat Transfer</div>
+                            <p class="project-desc">Investigation of heat transfer enhancement in metal foam heat sinks using CFD analysis.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-category="experimental fluid-mechanics" onclick="openProject('https://github.com/mohsenfalahi/particle-tracking')">
+                        <div class="project-image"><i class="fas fa-search-location"></i></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Particle Tracking Velocimetry</h3>
+                            <div class="project-category">Experimental</div>
+                            <p class="project-desc">Development of PTV system for measuring velocity fields in complex multiphase flows.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-category="simulation cfd" onclick="openProject('https://github.com/mohsenfalahi/turbulence-modeling')">
+                        <div class="project-image"><i class="fas fa-wind"></i></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Turbulence Modeling</h3>
+                            <div class="project-category">CFD</div>
+                            <p class="project-desc">Comparison of RANS and LES turbulence models for separated flow prediction around bluff bodies.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-category="heat-transfer experimental" onclick="openProject('https://github.com/mohsenfalahi/phase-change')">
+                        <div class="project-image"><i class="fas fa-thermometer-half"></i></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Phase Change Heat Transfer</h3>
+                            <div class="project-category">Heat Transfer</div>
+                            <p class="project-desc">Experimental study of boiling heat transfer on micro-structured surfaces with different wettabilities.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-category="fluid-mechanics cfd" onclick="openProject('https://github.com/mohsenfalahi/mixing-analysis')">
+                        <div class="project-image"><i class="fas fa-blender"></i></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Micromixer Optimization</h3>
+                            <div class="project-category">Fluid Mechanics</div>
+                            <p class="project-desc">Design optimization of passive micromixers using topology optimization and CFD analysis.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-category="simulation experimental" onclick="openProject('https://github.com/mohsenfalahi/flow-measurement')">
+                        <div class="project-image"><i class="fas fa-ruler"></i></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Flow Measurement System</h3>
+                            <div class="project-category">Experimental</div>
+                            <p class="project-desc">Development of non-intrusive flow measurement system using ultrasonic Doppler velocimetry.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-category="heat-transfer simulation" onclick="openProject('https://github.com/mohsenfalahi/thermal-management')">
+                        <div class="project-image"><i class="fas fa-microchip"></i></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Electronic Cooling Design</h3>
+                            <div class="project-category">Heat Transfer</div>
+                            <p class="project-desc">Thermal management system design for high-power electronics using liquid cooling and phase change materials.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-category="cfd fluid-mechanics" onclick="openProject('https://github.com/mohsenfalahi/cavitation-study')">
+                        <div class="project-image"><i class="fas fa-bomb"></i></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Cavitation Modeling</h3>
+                            <div class="project-category">CFD</div>
+                            <p class="project-desc">Numerical investigation of cavitation inception and development in centrifugal pump impellers.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-category="experimental heat-transfer" onclick="openProject('https://github.com/mohsenfalahi/nanofluid-study')">
+                        <div class="project-image"><i class="fas fa-flask-vial"></i></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Nanofluid Heat Transfer</h3>
+                            <div class="project-category">Heat Transfer</div>
+                            <p class="project-desc">Experimental investigation of heat transfer enhancement using Al2O3-water nanofluids in circular tubes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-category="simulation fluid-mechanics" onclick="openProject('https://github.com/mohsenfalahi/jet-impingement')">
+                        <div class="project-image"><i class="fas fa-spray-can"></i></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Jet Impingement Cooling</h3>
+                            <div class="project-category">Simulation</div>
+                            <p class="project-desc">Optimization of impinging jet arrays for uniform heat transfer distribution on heated surfaces.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-category="cfd experimental" onclick="openProject('https://github.com/mohsenfalahi/flow-visualization')">
+                        <div class="project-image"><i class="fas fa-eye"></i></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Advanced Flow Visualization</h3>
+                            <div class="project-category">Experimental</div>
+                            <p class="project-desc">Development of PIV and flow visualization techniques for complex multiphase flow characterization.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <h1 class="section-title">Contact</h1>
+                <div class="section-subtitle"></div>
+                
+                <p class="contact-text">
+                    Feel free to reach out to me for collaboration opportunities, research discussions, or any inquiries about my work.
+                </p>
+                
+                <div class="contact-methods">
+                    <a href="mailto:mohsen.falahi@example.com" class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <h3 class="contact-method-title">Email</h3>
+                        <p class="contact-method-info">mohsen.falahi@example.com</p>
+                    </a>
+                    
+                    <a href="https://linkedin.com/in/mohsenfalahi" class="contact-method">
+                        <i class="fab fa-linkedin"></i>
+                        <h3 class="contact-method-title">LinkedIn</h3>
+                        <p class="contact-method-info">Connect with me</p>
+                    </a>
+                    
+                    <a href="https://telegram.me/mohsenfalahi" class="contact-method">
+                        <i class="fab fa-telegram"></i>
+                        <h3 class="contact-method-title">Telegram</h3>
+                        <p class="contact-method-info">@mohsenfalahi</p>
+                    </a>
+                    
+                    <a href="https://github.com/mohsenfalahi" class="contact-method">
+                        <i class="fab fa-github"></i>
+                        <h3 class="contact-method-title">GitHub</h3>
+                        <p class="contact-method-info">View my repositories</p>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all nav items and sections
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+                
+                // Add active class to clicked nav item
+                this.classList.add('active');
+                
+                // Show corresponding section
+                const targetSection = this.getAttribute('data-section');
+                document.getElementById(targetSection).classList.add('active');
+            });
+        });
+
+        // Project filtering
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all filter buttons
+                document.querySelectorAll('.filter-btn').forEach(filter => filter.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filterValue = this.getAttribute('data-filter');
+                const projectCards = document.querySelectorAll('.project-card');
+                
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Function to open project links
+        function openProject(url) {
+            window.open(url, '_blank');
+        }
+
+        // Add smooth scroll behavior
+        document.documentElement.style.scrollBehavior = 'smooth';
+
+        // Animate skill bars when resume section is active
+        const observeSkillBars = () => {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.style.width;
+                        entry.target.style.width = '0%';
+                        setTimeout(() => {
+                            entry.target.style.width = width;
+                        }, 200);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            skillBars.forEach(bar => observer.observe(bar));
+        };
+
+        // Initialize skill bar animation
+        observeSkillBars();
+
+        // Add hover effects to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Parallax effect for background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            document.body.style.backgroundPosition = `50% ${rate}px`;
+        });
+
+        // Add typing animation to the main title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            const timer = setInterval(() => {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                }
+            }, speed);
+        }
+
+        // Initialize typing animation on page load
+        window.addEventListener('load', () => {
+            const titleElement = document.querySelector('#about .section-title');
+            if (titleElement) {
+                typeWriter(titleElement, 'About Me', 150);
+            }
+        });
+
+        // Add loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease-in';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Mobile menu toggle (for future mobile optimization)
+        const toggleMobileMenu = () => {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        };
+
+        // Add click-to-close functionality for mobile
+        document.addEventListener('click', (e) => {
+            const sidebar = document.querySelector('.sidebar');
+            const isClickInside = sidebar.contains(e.target);
+            
+            if (!isClickInside && window.innerWidth <= 1024 && sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
