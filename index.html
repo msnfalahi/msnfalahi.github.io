@@ -17,6 +17,7 @@
             background-color: #0a0a0a;
             color: #ffffff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
@@ -121,14 +122,15 @@
             flex: 1;
             padding: 2rem 3rem;
             background-color: #111111;
-            min-width: 0; /* Fix for flex overflow */
-            overflow-x: hidden;
+            width: calc(100% - 320px);
+            max-width: calc(100% - 320px);
         }
 
         .nav-tabs {
             position: fixed;
             top: 0;
             right: 0;
+            left: 320px;
             z-index: 1000;
             background: rgba(17, 17, 17, 0.95);
             padding: 1rem 3rem;
@@ -163,6 +165,7 @@
             margin-top: 80px;
             display: none;
             animation: fadeIn 0.5s ease-in;
+            width: 100%;
         }
 
         .section.active {
@@ -261,7 +264,7 @@
             margin-left: 2rem;
         }
 
-        .timeline::before {
+        #resume .timeline::before {
             content: '';
             position: absolute;
             left: -15px;
@@ -269,23 +272,6 @@
             bottom: 0;
             width: 2px;
             background: #00ffaa;
-        }
-
-        /* Remove any unwanted pseudo-elements */
-        .section:not(#resume) .timeline::before {
-            display: none !important;
-        }
-
-        .interests-grid::before,
-        .interests-grid::after,
-        .projects-grid::before, 
-        .projects-grid::after,
-        .section::before,
-        .section::after,
-        .main-content::before,
-        .main-content::after {
-            display: none !important;
-            content: none !important;
         }
 
         .timeline-item {
@@ -378,16 +364,6 @@
             transition: width 0.8s ease;
         }
 
-        /* Fix for unwanted green bars */
-        .section::before,
-        .section::after,
-        .interests-grid::before,
-        .interests-grid::after,
-        .projects-grid::before,
-        .projects-grid::after {
-            display: none !important;
-        }
-
         /* Projects Section */
         .project-filters {
             display: flex;
@@ -416,6 +392,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
+            width: 100%;
         }
 
         .project-card {
@@ -526,6 +503,7 @@
                 margin-left: 0;
                 padding: 2rem 1.5rem;
                 width: 100%;
+                max-width: 100%;
             }
 
             .nav-tabs {
@@ -536,7 +514,6 @@
 
             .projects-grid {
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                width: 100%;
             }
         }
 
@@ -912,23 +889,6 @@
                             </div>
                         </div>
                     </div>
-                </div>>CFD Analysis</span><span>95%</span></div>
-                                <div class="skill-bar"><div class="skill-progress" style="width: 95%"></div></div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-name"><span>Heat Transfer</span><span>90%</span></div>
-                                <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-name"><span>Fluid Mechanics</span><span>95%</span></div>
-                                <div class="skill-bar"><div class="skill-progress" style="width: 95%"></div></div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-name"><span>Data Analysis</span><span>85%</span></div>
-                                <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </section>
 
@@ -1001,7 +961,6 @@
                         </div>
                     </div>
                     
-                    <!-- Additional template projects based on skills and interests -->
                     <div class="project-card" data-category="cfd porous-media" onclick="openProject('https://github.com/msnfalahi')">
                         <div class="project-image"><i class="fas fa-water"></i></div>
                         <div class="project-content">
@@ -1127,14 +1086,11 @@
         // Navigation functionality
         document.querySelectorAll('.nav-item').forEach(item => {
             item.addEventListener('click', function() {
-                // Remove active class from all nav items and sections
                 document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
                 document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
                 
-                // Add active class to clicked nav item
                 this.classList.add('active');
                 
-                // Show corresponding section
                 const targetSection = this.getAttribute('data-section');
                 document.getElementById(targetSection).classList.add('active');
             });
@@ -1143,7 +1099,6 @@
         // Project filtering
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                // Remove active class from all filter buttons
                 document.querySelectorAll('.filter-btn').forEach(filter => filter.classList.remove('active'));
                 this.classList.add('active');
                 
@@ -1194,10 +1149,8 @@
             skillBars.forEach(bar => observer.observe(bar));
         };
 
-        // Initialize skill bar animation
         observeSkillBars();
 
-        // Add hover effects to project cards
         document.querySelectorAll('.project-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-8px) scale(1.02)';
@@ -1208,58 +1161,12 @@
             });
         });
 
-        // Parallax effect for background
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            document.body.style.backgroundPosition = `50% ${rate}px`;
-        });
-
-        // Add typing animation to the main title
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            const timer = setInterval(() => {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(timer);
-                }
-            }, speed);
-        }
-
-        // Initialize typing animation on page load
-        window.addEventListener('load', () => {
-            const titleElement = document.querySelector('#about .section-title');
-            if (titleElement) {
-                typeWriter(titleElement, 'About Me', 150);
-            }
-        });
-
-        // Add loading animation
         document.addEventListener('DOMContentLoaded', function() {
             document.body.style.opacity = '0';
             setTimeout(() => {
                 document.body.style.transition = 'opacity 0.5s ease-in';
                 document.body.style.opacity = '1';
             }, 100);
-        });
-
-        // Mobile menu toggle (for future mobile optimization)
-        const toggleMobileMenu = () => {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.classList.toggle('active');
-        };
-
-        // Add click-to-close functionality for mobile
-        document.addEventListener('click', (e) => {
-            const sidebar = document.querySelector('.sidebar');
-            const isClickInside = sidebar.contains(e.target);
-            
-            if (!isClickInside && window.innerWidth <= 1024 && sidebar.classList.contains('active')) {
-                sidebar.classList.remove('active');
-            }
         });
     </script>
 </body>
