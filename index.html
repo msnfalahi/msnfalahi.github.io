@@ -33,6 +33,7 @@
             height: 100vh;
             overflow-y: auto;
             border-right: 1px solid #333;
+            z-index: 10;
         }
 
         .profile-img {
@@ -120,6 +121,8 @@
             flex: 1;
             padding: 2rem 3rem;
             background-color: #111111;
+            min-width: 0; /* Fix for flex overflow */
+            overflow-x: hidden;
         }
 
         .nav-tabs {
@@ -268,6 +271,23 @@
             background: #00ffaa;
         }
 
+        /* Remove any unwanted pseudo-elements */
+        .section:not(#resume) .timeline::before {
+            display: none !important;
+        }
+
+        .interests-grid::before,
+        .interests-grid::after,
+        .projects-grid::before, 
+        .projects-grid::after,
+        .section::before,
+        .section::after,
+        .main-content::before,
+        .main-content::after {
+            display: none !important;
+            content: none !important;
+        }
+
         .timeline-item {
             position: relative;
             margin-bottom: 2.5rem;
@@ -356,6 +376,16 @@
             background: linear-gradient(90deg, #00ffaa, #00cc88);
             border-radius: 4px;
             transition: width 0.8s ease;
+        }
+
+        /* Fix for unwanted green bars */
+        .section::before,
+        .section::after,
+        .interests-grid::before,
+        .interests-grid::after,
+        .projects-grid::before,
+        .projects-grid::after {
+            display: none !important;
         }
 
         /* Projects Section */
@@ -489,19 +519,24 @@
             .sidebar {
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
+                z-index: 1000;
             }
 
             .main-content {
                 margin-left: 0;
                 padding: 2rem 1.5rem;
+                width: 100%;
             }
 
             .nav-tabs {
                 padding: 1rem 1.5rem;
+                width: 100%;
+                left: 0;
             }
 
             .projects-grid {
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                width: 100%;
             }
         }
 
@@ -523,8 +558,16 @@
                 grid-template-columns: 1fr;
             }
 
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
             .contact-methods {
                 gap: 1.5rem;
+            }
+
+            .main-content {
+                padding: 1rem;
             }
         }
     </style>
@@ -611,21 +654,21 @@
                 
                 <div class="interests-grid">
                     <div class="interest-card">
+                        <div class="interest-icon"><i class="fas fa-water"></i></div>
+                        <h3 class="interest-title">Multiphase Flow</h3>
+                        <p class="interest-desc">Investigation of complex multiphase systems including gas-liquid flows, bubble dynamics, and interfacial phenomena in various engineering applications and porous media.</p>
+                    </div>
+                    
+                    <div class="interest-card">
                         <div class="interest-icon"><i class="fas fa-brain"></i></div>
                         <h3 class="interest-title">Physics-Informed Neural Networks</h3>
                         <p class="interest-desc">Developing PINN models for multiphase flow simulation, combining physics-based constraints with deep learning for accurate flow predictions in complex geometries.</p>
                     </div>
                     
                     <div class="interest-card">
-                        <div class="interest-icon"><i class="fas fa-water"></i></div>
+                        <div class="interest-icon"><i class="fas fa-wind"></i></div>
                         <h3 class="interest-title">Computational Fluid Dynamics</h3>
                         <p class="interest-desc">Advanced CFD modeling using ANSYS Fluent, OpenFOAM, and custom solvers for complex flow phenomena including turbulence, boundary layers, and multiphase systems.</p>
-                    </div>
-                    
-                    <div class="interest-card">
-                        <div class="interest-icon"><i class="fas fa-th"></i></div>
-                        <h3 class="interest-title">Transport in Porous Media</h3>
-                        <p class="interest-desc">Investigation of flow and transport phenomena in porous structures with applications in energy storage, filtration, and reservoir engineering using both experimental and numerical approaches.</p>
                     </div>
                     
                     <div class="interest-card">
@@ -635,13 +678,25 @@
                     </div>
                     
                     <div class="interest-card">
+                        <div class="interest-icon"><i class="fas fa-th"></i></div>
+                        <h3 class="interest-title">Transport in Porous Media</h3>
+                        <p class="interest-desc">Investigation of flow and transport phenomena in porous structures with applications in energy storage, filtration, and reservoir engineering using both experimental and numerical approaches.</p>
+                    </div>
+                    
+                    <div class="interest-card">
+                        <div class="interest-icon"><i class="fas fa-calculator"></i></div>
+                        <h3 class="interest-title">Scientific Computing & Machine Learning</h3>
+                        <p class="interest-desc">Development of computational algorithms and machine learning models for solving complex engineering problems, with focus on fluid mechanics and heat transfer applications.</p>
+                    </div>
+                    
+                    <div class="interest-card">
                         <div class="interest-icon"><i class="fas fa-microscope"></i></div>
                         <h3 class="interest-title">Microfluidics & Nanofluids</h3>
                         <p class="interest-desc">Study of fluid behavior at microscales, nanofluid heat transfer enhancement, and microfluidic device design for biomedical and industrial applications.</p>
                     </div>
                     
                     <div class="interest-card">
-                        <div class="interest-icon"><i class="fas fa-wind"></i></div>
+                        <div class="interest-icon"><i class="fas fa-layer-group"></i></div>
                         <h3 class="interest-title">Turbulence & Boundary Layers</h3>
                         <p class="interest-desc">Advanced turbulence modeling using RANS and LES approaches, boundary layer theory application, and flow separation analysis in complex geometries.</p>
                     </div>
